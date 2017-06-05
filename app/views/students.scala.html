@@ -1,0 +1,26 @@
+@(students: List[Student])
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-responsive table-striped">
+        <thead>
+          <th>
+            <td>Student Id</td><td>Name</td><td>Father Name</td><td>Date Of Joining</td><td>Class Of Joining</td><td>Village</td>
+          </th>
+        </thead>
+        <tbody>
+          @students.foreach(student => {
+              <tr>
+              <td>@student._id</td>
+              <td>@student.name</td>
+              <td>@student.father</td>
+              <td>@student.doj</td>
+              <td>@student.admission</td>
+              <td>@student.village</td>
+              </tr>
+          })
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
