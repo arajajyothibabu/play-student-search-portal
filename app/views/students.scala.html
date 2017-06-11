@@ -1,26 +1,36 @@
-@(students: List[Student])
+@(user: Option[String], students: List[Student])
+
+@includes.header(user)
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <table class="table table-bordered table-responsive table-striped">
         <thead>
-          <th>
-            <td>Student Id</td><td>Name</td><td>Father Name</td><td>Date Of Joining</td><td>Class Of Joining</td><td>Village</td>
-          </th>
+          <tr>
+            <th>Student Id</th>
+            <th>Name</th>
+            <th>Father Name</th>
+            <th>Date Of Joining</th>
+            <th>Class Of Joining</th>
+            <th>Village</th>
+          </tr>
         </thead>
         <tbody>
-          @students.foreach(student => {
+          @for(student <- students){
               <tr>
-              <td>@student._id</td>
-              <td>@student.name</td>
-              <td>@student.father</td>
-              <td>@student.doj</td>
-              <td>@student.admission</td>
-              <td>@student.village</td>
+                  <td>@student.id</td>
+                  <td>@student.name</td>
+                  <td>@student.father.getOrElse("N/A")</td>
+                  <td>@student.doj.getOrElse("N/A")</td>
+                  <td>@student.admission.getOrElse("N/A")</td>
+                  <td>@student.village.getOrElse("N/A")</td>
               </tr>
-          })
+          }
         </tbody>
       </table>
     </div>
   </div>
 </div>
+
+@includes.footer(user)

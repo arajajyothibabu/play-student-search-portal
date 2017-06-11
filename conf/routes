@@ -9,6 +9,8 @@ GET     /students                   controllers.Application.students
 
 GET     /search                     controllers.Application.search(q: String)
 
+GET    /student/:id                    controllers.Application.student(id: String)
+
 POST    /student                    controllers.Application.updateStudent(id: Option[String])
 
 # Map static resources from the /public folder to the /assets URL path

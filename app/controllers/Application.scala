@@ -19,13 +19,13 @@ class Application(studentService: StudentService, serverHost: String) extends Co
 
   def students() = Action.async {
     studentService.findStudents().map(students => {
-      Ok(views.html.students(students))
+      Ok(views.html.students(None, students))
     })
   }
 
   def student(id: String) = Action.async {
     studentService.studentDetails(id).map(student => {
-      Ok(views.html.student(student))
+      Ok(views.html.student(None, id, student))
     })
   }
 

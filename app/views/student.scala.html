@@ -1,7 +1,53 @@
-@(student: Option[Student])
-
+@(user: Option[String], id: String, student: Option[Student])
+@includes.header(user)
 <div class="container">
     <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            @if(student.isDefined){
+                <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@student.get.name</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                    <tr><td>Date of Birth</td><td>@student.get.dob.getOrElse("N/A")</td></tr>
+                                    <tr><td>Father Name</td><td>@student.get.father.getOrElse("N/A")</td></tr>
+                                    <tr><td>Mother Name</td><td>@student.get.mother.getOrElse("N/A")</td></tr>
+                                    <tr><td>Village</td><td>@student.get.village.getOrElse("N/A")</td></tr>
+                                    <tr><td>Occupation</td><td>@student.get.occupation.getOrElse("N/A")</td></tr>
+                                    <tr><td>Religion</td><td>@student.get.religion.getOrElse("N/A")</td></tr>
+                                    <tr><td>Caste</td><td>@student.get.caste.getOrElse("N/A")</td></tr>
+                                    <tr><td>Admission No.</td><td>@student.get.id</td></tr>
+                                    <tr><td>Date of Joining</td><td>@student.get.doj.getOrElse("N/A")</td></tr>
+                                    <tr><td>Admission Class</td><td>@student.get.admission.getOrElse("N/A")</td></tr>
+                                    <tr><td>Medium</td><td>@student.get.medium.getOrElse("N/A")</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                    <span class="pull-right">
+                        <a href="#" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                        <a href="#" data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                    </span>
+                </div>
 
+            </div>
+            }else{
+                <div class="alert alert-danger">
+                    <p>No Student Found with Id @id ..!</p>
+                </div>
+            }
+        </div>
+        <div class="col-md-1"></div>
     </div>
 </div>
+
+@includes.footer()
