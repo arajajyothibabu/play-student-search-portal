@@ -5,7 +5,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <table class="table table-bordered table-responsive table-striped">
+      <table class="table table-bordered table-responsive table-striped" id="student-table">
         <thead>
           <tr>
             <th>Student Id</th>
@@ -32,5 +32,9 @@
     </div>
   </div>
 </div>
-
+<script>
+    $(document).ready(function(){
+        $('#student-table').DataTable();
+    });
+</script>
 @includes.footer(user)

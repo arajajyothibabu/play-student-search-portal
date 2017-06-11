@@ -16,8 +16,13 @@ class StudentService(studentDAO: StudentDAOMongo) {
     studentDAO.insert(Json.toJson(student).as[JsObject])
   }
 
-  def findStudents(): Future[List[Student]] = {
-    studentDAO.read(Map.empty, None)
+  def findStudents(medium: Option[String]): Future[List[Student]] = {
+    val query = if(medium.isDefined){
+      Map("medium" -> medium.get)
+    }else{
+      Map.empty[String, String]
+    }
+    studentDAO.read(query, None)
   }
 
   def studentDetails(id: String): Future[Option[Student]] = {

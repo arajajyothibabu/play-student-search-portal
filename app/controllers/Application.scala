@@ -17,8 +17,8 @@ class Application(studentService: StudentService, serverHost: String) extends Co
     Future(Ok(views.html.index("Hai", Some("User"))))
   }
 
-  def students() = Action.async {
-    studentService.findStudents().map(students => {
+  def students(medium: Option[String]) = Action.async {
+    studentService.findStudents(medium).map(students => {
       Ok(views.html.students(None, students))
     })
   }

@@ -32,9 +32,9 @@ class StudentDAOMongo(mongoConnection: MongoConnection) {
 
   }
 
-  def read(query: Map[String, AnyRef], limit: Option[Int]): Future[List[Student]] = {
+  def read(query: Map[String, String], limit: Option[Int]): Future[List[Student]] = {
 
-    val queryObject = Json.obj()
+    val queryObject = Json.toJson(query).as[JsObject]
 
     val noOfDocumentToLimit = limit.fold(Integer.MAX_VALUE)(limit => limit)
     studentCollection.find(queryObject).cursor[Student]().collect[List](noOfDocumentToLimit)

@@ -5,11 +5,11 @@
 # Home page
 GET     /                           controllers.Application.index
 
-GET     /students                   controllers.Application.students
+GET     /students                   controllers.Application.students(medium: Option[String])
 
 GET     /search                     controllers.Application.search(q: String)
 
-GET    /student/:id                    controllers.Application.student(id: String)
+GET    /student/:id                 controllers.Application.student(id: String)
 
 POST    /student                    controllers.Application.updateStudent(id: Option[String])
 
